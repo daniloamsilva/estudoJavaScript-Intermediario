@@ -92,6 +92,26 @@ class Player extends Character{
 	}
 }
 
+class Npc extends Character{
+	constructor(field){
+		let x = Math.trunc(Math.random()*field.cols),
+			y = Math.trunc(Math.random()*field.rows);
+
+		super(field, x, y, '-_-');
+		setInterval(this.walk.bind(this), 500);
+	}
+
+	walk(){
+		let direction = Math.trunc(Math.random()*4) + 1;
+		switch(direction){
+			case 1: this.up(); break;
+			case 2: this.down(); break;
+			case 3: this.left(); break;
+			case 4: this.right(); break;
+		}
+	}
+}
+
 function startField(){
 	field = new Field(3, 4, '#myTable');
 	try{
